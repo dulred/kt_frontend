@@ -43,6 +43,20 @@ export const constantRoutes = [
     hidden: true
   },
 
+
+  {
+    path: '/test',
+    component: Layout,
+    redirect: '/test/t1',
+    children: [{
+      path: 't1',
+      name: 't1',
+      component: () => import('@/views/test/index'),
+      meta: { title: 't1', icon: 'dashboard' }
+    }]
+
+  },
+
   {
     path: '/',
     component: Layout,
@@ -73,6 +87,50 @@ export const constantRoutes = [
         name: 'Tree',
         component: () => import('@/views/tree/index'),
         meta: { title: 'Tree', icon: 'tree' }
+      }
+    ]
+  },
+  {
+    path: '/vod',
+    component: Layout,
+    redirect: '/vod/teacher/list',
+    name: 'vod',
+    meta: { title: '讲师管理', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'teacher/list',
+        name: 'TeacherList',
+        component: () => import('@/views/vod/teacher/list'),
+        meta: { title: '讲师列表', icon: 'table' }
+      },
+      {
+        path: 'teacher/create',
+        name: 'TeacherCreate',
+        component: () => import('@/views/vod/teacher/form'),
+        meta: { title: '讲师添加', icon: 'tree' }
+      },
+      {
+        path: 'teacher/edit/:id',
+        name: 'TeacherCreate',
+        component: () => import('@/views/vod/teacher/form'),
+        meta: { title: '编辑讲师', icon: 'tree'},
+        hidden:true
+      }
+    ]
+  },
+  {
+    path: '/subject',
+    component: Layout,
+    redirect: '/subject/list',
+    name: '课程分类管理',
+    alwaysShow: true,
+    meta: { title: '课程分类管理', icon: 'example' },
+    children: [
+      {
+        path: 'list',
+        name: '课程分类列表',
+        component: () => import('@/views/vod/subject/list'),
+        meta: { title: '课程分类列表', icon: 'table' }
       }
     ]
   },
